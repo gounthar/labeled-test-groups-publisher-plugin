@@ -34,7 +34,6 @@ import hudson.plugins.labeledgroupedtests.LabeledTestGroupsPublisherPlugin;
 import hudson.tasks.Publisher;
 import hudson.util.StringConverter2;
 import hudson.util.XStream2;
-import hudson.util.IOException2;
 import junit.framework.TestCase;
 
 import java.io.File;
@@ -54,7 +53,7 @@ import java.util.List;
 public class ConfigurationConversionTest extends TestCase {
 
     private XStream XSTREAM = new XStream2();
-    
+
     private void registerConverters() {
         XSTREAM.alias("project",FreeStyleProject.class);
         LabeledTestGroupsPublisherPlugin.registerWithXStream(XSTREAM);
@@ -93,14 +92,14 @@ public class ConfigurationConversionTest extends TestCase {
             fail("exception not encountered!");
         } catch (IOException e) {
             if (!ConversionException.class.equals(e.getCause().getClass())) {
-                fail("wrong cause"); 
+                fail("wrong cause");
             }
         }
     }
 
 
 
- 
+
     private void checkConfigsForCppAndJunit(List<LabeledTestGroupConfiguration> configs, String expectedCppFileMask, String expectedJUnitFileMask) {
         // One of the parsers should be cpp
         // One should be Junit
